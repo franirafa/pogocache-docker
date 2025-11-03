@@ -1,0 +1,36 @@
+Based on this pogocache command options
+
+Usage: pogocache [options]
+
+Basic options:
+  -h hostname            listening host                 (default: 127.0.0.1)
+  -p port                listening port                 (default: 9401)
+  -s socket              unix socket file               (default: none)
+  -v,-vv,-vvv            verbose logging level
+
+Additional options:
+  --threads count        number of threads              (default: 32)
+  --maxmemory value      set max memory usage           (default: 80%)
+  --evict yes/no         evict keys at maxmemory        (default: yes)
+  --persist path         persistence file               (default: none)
+  --maxconns conns       maximum connections            (default: 1024)
+
+Security options:
+  --auth passwd          auth token or password         (default: none)
+  --tlsport port         enable tls on port             (default: none)
+  --tlscert certfile     tls cert file                  (default: none)
+  --tlskey keyfile       tls key file                   (default: none)
+  --tlscacert cacertfile tls ca-cert file               (default: none)
+
+Advanced options:
+  --shards count         number of shards               (default: 4096)
+  --backlog count        accept backlog                 (default: 1024)
+  --queuesize count      event queuesize size           (default: 128)
+  --reuseport yes/no     reuseport for tcp              (default: no)
+  --tcpnodelay yes/no    disable nagles algo            (default: yes)
+  --quickack yes/no      use quickack (linux)           (default: no)
+  --uring yes/no         use uring (linux)              (default: yes)
+  --loadfactor percent   hashmap load factor            (default: 75)
+  --autosweep yes/no     automatic eviction sweeps      (default: yes)
+  --keysixpack yes/no    sixpack compress keys          (default: yes)
+  --cas yes/no           use compare and store          (default: no)
