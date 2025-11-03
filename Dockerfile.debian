@@ -41,14 +41,18 @@ ENV POGOCACHE_HOST=0.0.0.0
 # ENV POGOCACHE_CAS=
 
 # Copy the pogocache binaries
-COPY pogocache-linux-amd64 .
-COPY pogocache-linux-arm64 .
+COPY pogocache-linux-amd64.tar.gz .
+COPY pogocache-linux-arm64.tar.gz .
 
 # Create platform-specific symlink
 ARG TARGETARCH
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
+        rm -f pogocache-linux-arm64.tar.gz; \
+        tar -xzvf pogocache-linux-amd64.tar.gz; \
         ln -s /app/pogocache-linux-amd64/pogocache /app/pogocache; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
+        rm -f pogocache-linux-amd64.tar.gz; \
+        tar -xzvf pogocache-linux-arm64.tar.gz; \
         ln -s /app/pogocache-linux-arm64/pogocache /app/pogocache; \
     fi
 

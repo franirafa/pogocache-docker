@@ -1,7 +1,7 @@
 FROM alpine:3
 
 # Install required packages
-RUN apk add --no-cache ca-certificates bash
+RUN apk add --no-cache ca-certificates bash tar
 
 # Set working directory
 WORKDIR /app
@@ -41,14 +41,18 @@ ENV POGOCACHE_HOST=0.0.0.0
 # ENV POGOCACHE_CAS=
 
 # Copy the pogocache binaries
-COPY pogocache-linux-amd64-musl .
-COPY pogocache-linux-arm64-musl .
+COPY pogocache-linux-amd64-musl.tar.gz .
+COPY pogocache-linux-arm64-musl.tar.gz .
 
 # Create platform-specific symlink
 ARG TARGETARCH
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
+        rm -f pogocache-linux-arm64-musl.tar.gz; \
+        tar -xzvf pogocache-linux-amd64-musl.tar.gz; \
         ln -s /app/pogocache-linux-amd64-musl/pogocache /app/pogocache; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
+        rm -f pogocache-linux-amd64-musl.tar.gz; \
+        tar -xzvf pogocache-linux-arm64-musl.tar.gz; \
         ln -s /app/pogocache-linux-arm64-musl/pogocache /app/pogocache; \
     fi
 
