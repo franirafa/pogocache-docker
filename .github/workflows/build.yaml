@@ -20,11 +20,23 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
 
-      - name: Fetch pogocache artifacts
+      - name: Fetch pogocache glibc artifacts
         uses: robinraju/release-downloader@daf26c55d821e836577a15f77d86ddc078948b05 # v1.12
+        if: matrix.os == 'debian'
         with:
           repository: 'pogocache/pogocache'
           tag: ${{ github.ref_name }}
+          filename: pogocache-linux-${{ matrix.arch }}.tar.gz
+          tarBall: true
+          extract: true
+
+      - name: Fetch pogocache musl artifacts
+        uses: robinraju/release-downloader@daf26c55d821e836577a15f77d86ddc078948b05 # v1.12
+        if: matrix.os == 'alpine'
+        with:
+          repository: 'pogocache/pogocache'
+          tag: ${{ github.ref_name }}
+          filename: pogocache-linux-${{ matrix.arch }}-musl.tar.gz
           tarBall: true
           extract: true
 
