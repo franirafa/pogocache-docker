@@ -95,9 +95,7 @@ services:
 
 Images are available in both Alpine and Debian variants:
 
-
 Registry URL: [pogocache](https://github.com/franzramadhan/pogocache-docker/pkgs/container/pogocache)
-
 
 ```bash
 # Alpine (smaller, recommended)
@@ -120,7 +118,7 @@ kubectl apply -f kubernetes/manifest.yaml -n pogocache --server-side
 
 ## Project Structure
 
-```
+```markdown
 pogocache-docker/
 ├── Dockerfile.alpine       # Alpine-based image (musl)
 ├── Dockerfile.debian        # Debian-based image (glibc)
@@ -148,11 +146,17 @@ docker build -f Dockerfile.debian -t pogocache:debian .
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
 
 ## Related Projects
 
 - [pogocache](https://github.com/pogocache/pogocache) - The upstream pogocache project
+
+## TODO
+
+- [ ] Add workflow to deploy to cluster
+- [ ] Automated workflow that subscribe to the new tag releases in upstream
+- [ ] More flexible arch and platform based on the available artifacts in upstream
 
 ## Contributing
 
